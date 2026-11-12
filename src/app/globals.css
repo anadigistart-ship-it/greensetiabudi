@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  @apply bg-deep font-body text-beige antialiased;
+}
+
+::selection {
+  background: #d4af37;
+  color: #111;
+}
+
+@layer utilities {
+  .text-gold-gradient {
+    background: linear-gradient(100deg, #a9c88a 0%, #e8e3d1 30%, #d4af37 60%, #a9c88a 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-md;
+  }
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 md:px-8;
+  }
+}
+
+@layer components {
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-semibold uppercase tracking-widest text-charcoal transition duration-300 hover:-translate-y-0.5 hover:bg-[#e6c24f] hover:shadow-[0_10px_30px_-8px_rgba(212,175,55,0.6)];
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/60 px-7 py-3.5 text-sm font-semibold uppercase tracking-widest text-gold transition duration-300 hover:-translate-y-0.5 hover:bg-gold/10;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

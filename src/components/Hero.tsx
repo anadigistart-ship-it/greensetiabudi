@@ -1,0 +1,136 @@
+"use client";
+
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { LogoMark } from "./Logo";
+import { IconArrow } from "./Icons";
+import { site, waLink } from "@/lib/data";
+
+const leaves = [
+  { left: "6%", top: "18%", size: 90, delay: 0, rotate: -20 },
+  { left: "88%", top: "26%", size: 120, delay: 1.2, rotate: 25 },
+  { left: "80%", top: "72%", size: 70, delay: 2.4, rotate: 10 },
+  { left: "12%", top: "70%", size: 60, delay: 3.2, rotate: -40 },
+];
+
+const stats = [
+  { v: "3", l: "Tipe Rumah" },
+  { v: "30%+", l: "Area Hijau" },
+  { v: "24/7", l: "Keamanan" },
+  { v: "360°", l: "Virtual Tour" },
+];
+
+export default function Hero() {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+
+  return (
+    <section
+      id="beranda"
+      ref={ref}
+      // svh = tinggi layar HP yang sudah memperhitungkan bar browser; min-h-screen sebagai cadangan
+      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-deep via-forest to-deep supports-[height:100svh]:min-h-svh"
+    >
+      {/* cahaya */}
+      <div className="pointer-events-none absolute -top-40 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-leaf/10 blur-[100px] md:h-[600px] md:w-[600px] md:blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-56 w-56 rounded-full bg-gold/10 blur-[90px] md:h-72 md:w-72 md:blur-[110px]" />
+
+      {/* daun melayang: disembunyikan di HP supaya tidak menabrak logo dan teks */}
+      {leaves.map((l, i) => (
+        <svg
+          key={i}
+          viewBox="0 0 100 100"
+          aria-hidden="true"
+          className="pointer-events-none absolute hidden animate-float text-sage/30 sm:block"
+          style={{
+            left: l.left,
+            top: l.top,
+            width: l.size,
+            height: l.size,
+            animationDelay: `${l.delay}s`,
+            transform: `rotate(${l.rotate}deg)`,
+          }}
+        >
+          <path d="M10 90 C10 40 40 10 90 10 C90 60 60 90 10 90Z" fill="currentColor" />
+          <path d="M10 90 C35 60 55 40 80 20" stroke="#0F2218" strokeWidth="2" fill="none" opacity=".5" />
+        </svg>
+      ))}
+
+      {/* padding bawah menyesuaikan tinggi bar statistik (2 baris di HP, 1 baris di layar lebar) */}
+      <motion.div
+        style={{ y, opacity: fade }}
+        className="container-x relative z-10 pb-40 pt-24 text-center sm:pb-36 sm:pt-28 md:pb-32 md:pt-32"
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="mx-auto flex justify-center"
+        >
+          {/* lebar & tinggi dibatasi lebar/tinggi layar, rasio logo tetap */}
+          <LogoMark className="h-auto w-auto max-h-[30svh] max-w-[88vw] drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] sm:max-h-[36svh] sm:max-w-[34rem] md:max-h-[42svh] md:max-w-[40rem]" />
+        </motion.div>
+
+        {/* judul untuk mesin pencari & pembaca layar; tampilannya sudah ada di logo */}
+        <h1 className="sr-only">Green Setiabudi Residence</h1>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5, duration: 1 }}
+          className="mt-4 text-[10px] font-medium uppercase tracking-[0.3em] text-gold sm:text-xs sm:tracking-[0.5em]"
+        >
+          Sersan Bajuri · Bandung Barat
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.9, duration: 1 }}
+          className="mx-auto mt-6 max-w-xl px-2 text-sm leading-relaxed text-beige/75 sm:mt-8 sm:text-base md:text-lg"
+        >
+          Hunian eksklusif yang menyatu dengan alam di jantung Bandung utara. <br className="hidden md:block" />
+          <span className="text-gold">{site.tagline}.</span>
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.1, duration: 1 }}
+          className="mx-auto mt-8 flex w-full max-w-xs flex-col items-stretch justify-center gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:items-center sm:gap-4"
+        >
+          <a
+            href={waLink("Halo, saya ingin jadwalkan visit ke Green Setiabudi Residence.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold"
+          >
+            Jadwalkan Visit <IconArrow className="h-4 w-4" />
+          </a>
+          <a href="#tour-360" className="btn-outline">
+            Tour Virtual 360°
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* statistik */}
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.4, duration: 1 }}
+        className="absolute inset-x-0 bottom-0 z-10 border-t border-white/10 bg-deep/60 backdrop-blur-md"
+      >
+        <div className="container-x grid grid-cols-2 gap-y-3 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4 md:grid-cols-4 md:py-5">
+          {stats.map((s) => (
+            <div key={s.l} className="text-center">
+              <div className="font-heading text-xl font-semibold text-gold sm:text-2xl md:text-3xl">{s.v}</div>
+              <div className="mt-1 text-[9px] uppercase tracking-[0.25em] text-beige/60 sm:text-[10px] sm:tracking-[0.3em]">{s.l}</div>
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </section>
+  );
+}
