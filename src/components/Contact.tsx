@@ -3,7 +3,7 @@
 import { useState } from "react";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
-import { IconMail, IconPhone, IconPin, IconWhatsapp } from "./Icons";
+import { IconInstagram, IconMail, IconPhone, IconPin, IconWhatsapp } from "./Icons";
 import { site, units, waLink } from "@/lib/data";
 
 export default function Contact() {
@@ -83,6 +83,12 @@ export default function Contact() {
                   <li className="flex gap-3">
                     <IconMail className="h-5 w-5 shrink-0 text-gold" />
                     <a href={`mailto:${site.email}`} className="hover:text-gold">{site.email}</a>
+                  </li>
+                  <li className="flex gap-3">
+                    <IconInstagram className="h-5 w-5 shrink-0 text-gold" />
+                    <a href={site.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-gold">
+                      {site.instagramHandle}
+                    </a>
                   </li>
                 </ul>
                 <p className="text-xs uppercase tracking-[0.25em] text-beige/50">{site.hours}</p>

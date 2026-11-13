@@ -17,7 +17,7 @@ Semua ada di `src/lib/data.ts` (cari tanda `GANTI`):
 
 | Item | Keterangan |
 | --- | --- |
-| `whatsapp`, `phoneDisplay`, `email` | Kontak marketing asli (atau lewat `.env.local`) |
+| `whatsapp`, `phoneDisplay`, `email`, `instagram` | Sudah diisi kontak resmi (WA +62 852-2031-8051, greensetiabudiresidence@gmail.com, @greensetiabudiresidence). Jika ada `.env.local` dengan `NEXT_PUBLIC_WA_NUMBER`, nilainya menimpa nomor WA di `data.ts` |
 | `developer`, `address`, `geo` | Nama PT, alamat lengkap, koordinat lokasi |
 | `units` | Tipe, spesifikasi, dan harga resmi |
 | `nearby` | Waktu tempuh perkiraan, verifikasi dulu |

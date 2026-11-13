@@ -8,13 +8,14 @@ export const site = {
   short: "Green Setiabudi",
   tagline: "Live in Nature, Live in Luxury",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://greensetiabudi.com",
-  whatsapp: process.env.NEXT_PUBLIC_WA_NUMBER ?? "6281234567890", // GANTI
-  phoneDisplay: "1111111111111", // GANTI
-  email: "info@greensetiabudi.com", // GANTI
+  whatsapp: process.env.NEXT_PUBLIC_WA_NUMBER ?? "6285220318051",
+  phoneDisplay: "+62 852-2031-8051",
+  email: "greensetiabudiresidence@gmail.com",
   developer: "PT Karya Central Terang Abadi",
   address: "Jl. Pasir Sereh / Sersan Bajuri KM 4,2, Bandung Barat",
   geo: { lat: -6.8607, lng: 107.5937 }, // GANTI dengan koordinat gerbang cluster (titik ini masih perkiraan)
-  instagram: "https://instagram.com/greensetiabudi", // GANTI
+  instagram: "https://www.instagram.com/greensetiabudiresidence/",
+  instagramHandle: "@greensetiabudiresidence",
   hours: "Senin - Minggu, 09.00 - 17.00 WIB",
 };
 
