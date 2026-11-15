@@ -5,13 +5,15 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        forest: "#1E3D2B",
-        sage: "#6A8A5B",
-        leaf: "#A9C88A",
-        beige: "#E8E3D1",
-        gold: "#D4AF37",
+        // warna mengikuti tema (lihat variabel --c-* di globals.css)
+        forest: "rgb(var(--c-forest) / <alpha-value>)",
+        sage: "rgb(var(--c-sage) / <alpha-value>)",
+        leaf: "rgb(var(--c-leaf) / <alpha-value>)",
+        beige: "rgb(var(--c-beige) / <alpha-value>)",
+        gold: "rgb(var(--c-gold) / <alpha-value>)",
+        deep: "rgb(var(--c-deep) / <alpha-value>)",
+        line: "rgb(var(--c-line) / <alpha-value>)",
         charcoal: "#111111",
-        deep: "#0F2218",
       },
       fontFamily: {
         heading: ["var(--font-cinzel)", "serif"],

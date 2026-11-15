@@ -11,7 +11,7 @@ export default function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="bg-deep py-24 md:py-32">
+    <section id="faq" className="bg-deep py-16 sm:py-20 md:py-28 lg:py-32">
       <div className="container-x max-w-3xl">
         <SectionHeading eyebrow="FAQ" title="Pertanyaan yang Sering Diajukan" />
         <div className="space-y-3">
@@ -19,7 +19,7 @@ export default function Faq() {
             const isOpen = open === i;
             return (
               <Reveal key={f.q} delay={i * 0.05}>
-                <div className="overflow-hidden rounded-2xl border border-white/10 bg-forest/40">
+                <div className="overflow-hidden rounded-2xl border border-line/10 bg-forest/40">
                   <h3>
                     <button
                       type="button"

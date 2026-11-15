@@ -33,7 +33,7 @@ export default function PlanLightbox({
   }, [onClose]);
 
   const btn =
-    "flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-beige backdrop-blur transition active:scale-90 hover:bg-gold hover:text-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold";
+    "flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-[#E8E3D1] backdrop-blur transition active:scale-90 hover:bg-gold hover:text-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold";
 
   return (
     <motion.div
@@ -66,7 +66,7 @@ export default function PlanLightbox({
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 top-0 flex items-center justify-between gap-3 bg-gradient-to-b from-black/70 to-transparent p-4">
-        <p className="font-heading text-lg font-semibold text-beige">{title}</p>
+        <p className="font-heading text-lg font-semibold text-[#E8E3D1]">{title}</p>
         <div className="pointer-events-auto flex gap-2">
           <button type="button" onClick={() => pz.zoomBy(1.4)} className={btn} aria-label="Perbesar">
             <IconPlus className="h-5 w-5" />
@@ -81,7 +81,7 @@ export default function PlanLightbox({
       </div>
 
       {!pz.touched ? (
-        <p className="pointer-events-none absolute inset-x-0 bottom-6 text-center text-[11px] uppercase tracking-[0.25em] text-beige/60">
+        <p className="pointer-events-none absolute inset-x-0 bottom-6 text-center text-[11px] uppercase tracking-[0.25em] text-[#E8E3D1]/60">
           Cubit atau ketuk dua kali untuk zoom
         </p>
       ) : null}

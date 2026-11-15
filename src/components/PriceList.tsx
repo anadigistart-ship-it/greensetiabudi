@@ -12,12 +12,12 @@ const nf = (n: number) => new Intl.NumberFormat("id-ID").format(n);
 function Accordion({ title, children, defaultOpen = false }: { title: string; children: React.ReactNode; defaultOpen?: boolean }) {
   const [open, setOpen] = useState(defaultOpen);
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/10 bg-forest/40">
+    <div className="overflow-hidden rounded-2xl border border-line/10 bg-forest/40">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition active:bg-white/5"
+        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left transition active:bg-line/5"
       >
         <span className="font-heading text-base font-semibold text-beige md:text-lg">{title}</span>
         <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.25 }} className="text-gold">
@@ -59,7 +59,7 @@ export default function PriceList() {
   const td = "px-4 py-4 text-sm whitespace-nowrap tabular-nums";
 
   return (
-    <section id="harga" className="bg-gradient-to-b from-deep to-forest/40 py-24 md:py-32">
+    <section id="harga" className="bg-gradient-to-b from-deep to-forest/40 py-16 sm:py-20 md:py-28 lg:py-32">
       <div className="container-x">
         <SectionHeading
           eyebrow="Daftar Harga"
@@ -68,7 +68,7 @@ export default function PriceList() {
         />
 
         <Reveal className="mb-8 flex justify-center">
-          <div className="relative flex rounded-full border border-white/10 bg-deep/70 p-1" role="tablist" aria-label="Pilih bank">
+          <div className="relative flex rounded-full border border-line/10 bg-deep/70 p-1" role="tablist" aria-label="Pilih bank">
             {banks.map((b) => (
               <button
                 key={b.id}
@@ -91,10 +91,10 @@ export default function PriceList() {
         <p className="-mt-3 mb-8 text-center text-xs text-beige/50">{banks.find((b) => b.id === bank)?.name}</p>
 
         <Reveal>
-          <div className="overflow-x-auto rounded-3xl border border-white/10 bg-forest/50 [-webkit-overflow-scrolling:touch]">
+          <div className="overflow-x-auto rounded-3xl border border-line/10 bg-forest/50 [-webkit-overflow-scrolling:touch]">
             <table className="w-full min-w-[860px] border-collapse text-left">
               <thead>
-                <tr className="border-b border-white/10 bg-deep/60">
+                <tr className="border-b border-line/10 bg-deep/60">
                   <th className={`${th} sticky left-0 z-10 bg-deep`}>Tipe</th>
                   <th className={th}>Harga promo</th>
                   <th className={th}>Uang muka</th>
@@ -108,7 +108,7 @@ export default function PriceList() {
               </thead>
               <tbody>
                 {units.map((u) => (
-                  <tr key={u.id} className="border-b border-white/5 transition hover:bg-white/[0.04]">
+                  <tr key={u.id} className="border-b border-line/5 transition hover:bg-line/[0.04]">
                     <td className={`${td} sticky left-0 z-10 bg-forest`}>
                       <span className="font-heading font-semibold text-beige">{u.name}</span>
                       <span className="ml-2 text-xs text-beige/50">{u.building}/{u.land}</span>

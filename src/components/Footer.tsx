@@ -4,7 +4,7 @@ import { nav, site } from "@/lib/data";
 
 export default function Footer() {
   return (
-    <footer className="border-t border-white/10 bg-deep pb-28 pt-16">
+<footer className="theme-dark border-t border-line/10 bg-deep pb-28 pt-16">
       <div className="container-x grid gap-12 md:grid-cols-3">
         <div className="flex justify-center md:justify-start">
           <LogoFull size="sm" />
@@ -37,7 +37,7 @@ export default function Footer() {
           </ul>
         </div>
       </div>
-      <div className="container-x mt-12 border-t border-white/5 pt-6 text-center text-xs leading-relaxed text-beige/40">
+      <div className="container-x mt-12 border-t border-line/5 pt-6 text-center text-xs leading-relaxed text-beige/40">
         <p>
           © {new Date().getFullYear()} {site.name}. Seluruh hak cipta dilindungi.
         </p>

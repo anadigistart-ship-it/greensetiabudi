@@ -2,13 +2,80 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Tema: default DARK = hijau, LIGHT = putih. Diatur lewat atribut data-theme di <html>. */
+:root,
+:root[data-theme="dark"] {
+  --c-deep: 15 34 24; /* latar utama */
+  --c-forest: 30 61 43; /* latar kartu / section */
+  --c-beige: 232 227 209; /* warna teks */
+  --c-leaf: 169 200 138;
+  --c-sage: 106 138 91;
+  --c-gold: 212 175 55;
+  --c-line: 255 255 255; /* garis & lapisan tipis */
+  color-scheme: dark;
+}
+:root[data-theme="light"] {
+  --c-deep: 255 255 255;
+  --c-forest: 236 243 233;
+  --c-beige: 22 49 33;
+  --c-leaf: 63 107 46;
+  --c-sage: 106 138 91;
+  --c-gold: 150 116 15;
+  --c-line: 22 49 33;
+  color-scheme: light;
+}
+
+/* Bagian yang selalu hijau (dark), apa pun tema yang dipilih. Dipakai di footer. */
+.theme-dark {
+  --c-deep: 15 34 24;
+  --c-forest: 30 61 43;
+  --c-beige: 232 227 209;
+  --c-leaf: 169 200 138;
+  --c-sage: 106 138 91;
+  --c-gold: 212 175 55;
+  --c-line: 255 255 255;
+  color-scheme: dark;
+}
+
+/* logo emas di footer jangan ikut filter mode light */
+.theme-dark img {
+  filter: none !important;
+}
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 64px;
+  -webkit-text-size-adjust: 100%;
+}
+@media (min-width: 640px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+}
+
+/* cegah geser samping di semua perangkat */
+html,
+body {
+  max-width: 100%;
+  overflow-x: clip;
+}
+img,
+video,
+svg {
+  max-width: 100%;
 }
 
 body {
   @apply bg-deep font-body text-beige antialiased;
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* logo emas dibuat sedikit lebih pekat di latar putih */
+:root[data-theme="light"] img[alt*="Logo" i],
+:root[data-theme="light"] img[alt^="Green Setiabudi" i] {
+  filter: brightness(0.88) saturate(1.15) drop-shadow(0 0 1px rgba(120, 90, 0, 0.45));
 }
 
 ::selection {
@@ -25,7 +92,7 @@ body {
     color: transparent;
   }
   .glass {
-    @apply border border-white/10 bg-white/5 backdrop-blur-md;
+    @apply border border-line/10 bg-line/5 backdrop-blur-md;
   }
   .container-x {
     @apply mx-auto w-full max-w-7xl px-5 md:px-8;
@@ -34,7 +101,7 @@ body {
 
 @layer components {
   .btn-gold {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-semibold uppercase tracking-widest text-charcoal transition duration-300 hover:-translate-y-0.5 hover:bg-[#e6c24f] hover:shadow-[0_10px_30px_-8px_rgba(212,175,55,0.6)];
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-semibold uppercase tracking-widest text-charcoal transition duration-300 hover:-translate-y-0.5 hover:brightness-110 hover:shadow-[0_10px_30px_-8px_rgba(212,175,55,0.6)];
   }
   .btn-outline {
     @apply inline-flex items-center justify-center gap-2 rounded-full border border-gold/60 px-7 py-3.5 text-sm font-semibold uppercase tracking-widest text-gold transition duration-300 hover:-translate-y-0.5 hover:bg-gold/10;

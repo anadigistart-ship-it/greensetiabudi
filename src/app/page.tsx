@@ -11,6 +11,7 @@ import Faq from "@/components/Faq";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import FloatingActions from "@/components/FloatingActions";
+import WelcomePopup from "@/components/WelcomePopup"; // ← tambahan 1
 import { faqs } from "@/lib/data";
 
 const faqLd = {
@@ -42,6 +43,7 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingActions />
+      <WelcomePopup /> {/* ← tambahan 2 */}
     </>
   );
 }

@@ -13,7 +13,7 @@ const icons = {
 
 export default function Concept() {
   return (
-    <section id="konsep" className="relative bg-deep py-24 md:py-32">
+    <section id="konsep" className="relative bg-deep py-16 sm:py-20 md:py-28 lg:py-32">
       <div className="container-x">
         <SectionHeading
           eyebrow="Brand Concept"
@@ -21,7 +21,7 @@ export default function Concept() {
           desc="Green Setiabudi Residence hadir sebagai hunian eksklusif yang menyatu dengan alam, memberikan kenyamanan, kemewahan, dan kualitas hidup terbaik bagi Anda dan keluarga."
         />
 
-        <div className="grid gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/10 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="grid gap-px overflow-hidden rounded-3xl border border-line/10 bg-line/10 sm:grid-cols-2 lg:grid-cols-5">
           {values.map((v, i) => {
             const Icon = icons[v.icon];
             return (

@@ -20,11 +20,11 @@ export default function Contact() {
   };
 
   const field =
-    "mt-2 w-full rounded-xl border border-white/15 bg-deep px-4 py-3 text-sm text-beige outline-none transition placeholder:text-beige/30 focus:border-gold";
+    "mt-2 w-full rounded-xl border border-line/15 bg-deep px-4 py-3 text-sm text-beige outline-none transition placeholder:text-beige/30 focus:border-gold";
   const label = "text-xs font-semibold uppercase tracking-[0.25em] text-gold";
 
   return (
-    <section id="kontak" className="relative overflow-hidden bg-gradient-to-b from-deep to-forest py-24 md:py-32">
+    <section id="kontak" className="relative overflow-hidden bg-gradient-to-b from-deep to-forest py-16 sm:py-20 md:py-28 lg:py-32">
       <div className="pointer-events-none absolute -left-20 top-20 h-80 w-80 rounded-full bg-leaf/10 blur-[120px]" />
       <div className="container-x">
         <SectionHeading
@@ -35,7 +35,7 @@ export default function Contact() {
 
         <div className="grid gap-8 lg:grid-cols-5">
           <Reveal className="lg:col-span-3">
-            <form onSubmit={submit} className="rounded-3xl border border-white/10 bg-forest/60 p-8 md:p-10">
+            <form onSubmit={submit} className="rounded-3xl border border-line/10 bg-forest/60 p-8 md:p-10">
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="sm:col-span-2">
                   <label htmlFor="c-name" className={label}>Nama lengkap</label>

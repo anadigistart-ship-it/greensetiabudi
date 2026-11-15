@@ -7,12 +7,12 @@ export const site = {
   name: "Green Setiabudi Residence",
   short: "Green Setiabudi",
   tagline: "Live in Nature, Live in Luxury",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://greensetiabudi.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://greensetiabudiresidence.com",
   whatsapp: process.env.NEXT_PUBLIC_WA_NUMBER ?? "6285220318051",
   phoneDisplay: "+62 852-2031-8051",
   email: "greensetiabudiresidence@gmail.com",
   developer: "PT Karya Central Terang Abadi",
-  address: "Jl. Pasir Sereh / Sersan Bajuri KM 4,2, Bandung Barat",
+  address: "Jl. Terusan Sersan Bajuri, Cihideung, Kec. Parongpong, Kota Bandung, Jawa Barat 40559",
   geo: { lat: -6.8607, lng: 107.5937 }, // GANTI dengan koordinat gerbang cluster (titik ini masih perkiraan)
   instagram: "https://www.instagram.com/greensetiabudiresidence/",
   instagramHandle: "@greensetiabudiresidence",
@@ -28,6 +28,24 @@ export const nav = [
   { href: "#tour-360", label: "Tour 360" },
   { href: "#lokasi", label: "Lokasi" },
   { href: "#harga", label: "Harga" },
+  { href: "#kpr", label: "Simulasi KPR" },
+  { href: "#faq", label: "FAQ" },
+  { href: "#kontak", label: "Kontak" },
+];
+
+/** Menu navbar: "Hunian" jadi dropdown berisi Konsep, Tipe Rumah, dan Harga. */
+export type NavItem = { label: string; href: string } | { label: string; children: { label: string; href: string; desc: string }[] };
+export const navMenu: NavItem[] = [
+  {
+    label: "Hunian",
+    children: [
+      { label: "Konsep", href: "#konsep", desc: "Filosofi & keunggulan kawasan" },
+      { label: "Tipe Rumah", href: "#tipe", desc: "Tancy, Lotus, dan Kaluna" },
+      { label: "Harga", href: "#harga", desc: "Daftar harga & promo bank" },
+    ],
+  },
+  { href: "#tour-360", label: "Tour 360" },
+  { href: "#lokasi", label: "Lokasi" },
   { href: "#kpr", label: "Simulasi KPR" },
   { href: "#faq", label: "FAQ" },
   { href: "#kontak", label: "Kontak" },
@@ -88,6 +106,9 @@ export type Unit = {
   features: string[];
   gradient: string;
   image?: string; // render tampak depan
+  gallery?: { src: string; label: string }[]; // foto interior (tab "Interior")
+  carportLabel?: string; // override teks carport, mis. "2 mobil"
+  oldPriceLabel?: string; // harga coret, mis. "Rp1,4 M"
   plan?: { src: string; w: number; h: number }; // denah
   scene?: string; // id scene di tourScenes
 };
@@ -95,17 +116,20 @@ export type Unit = {
 // Angka harga & angsuran disalin dari daftar harga promo developer.
 export const units: Unit[] = [
   {
-    id: "tansy",
-    name: "Tansy",
+    id: "tancy",
+    name: "Tancy",
     type: "Tipe 50/72",
-    tagline: "Compact modern untuk keluarga muda",
+    tagline: "Dua lantai 6 x 12 m, compact modern untuk keluarga muda",
     building: 50,
     land: 72,
-    bedrooms: null, // GANTI setelah denah Tansy ada
-    bathrooms: null,
-    carport: null,
-    floors: null,
-    frontage: null,
+    bedrooms: 2,
+    bathrooms: 2,
+    carport: 2,
+    carportLabel: "2 mobil",
+    floors: 2,
+    frontage: "6 x 12 m",
+    oldPriceLabel: "Rp1,4 M", // harga coret di brosur
+    // PERIKSA: brosur menulis "900 jutaan", daftar harga di bawah 850 jt. Angsuran dihitung dari 850 jt.
     price: 850_000_000,
     dp: 50_000_000,
     kpr: 800_000_000,
@@ -113,8 +137,15 @@ export const units: Unit[] = [
       BSN: { 5: 17_393_938, 10: 8_877_623, 15: 6_746_533, 20: 5_726_834, 25: 5_149_522 },
       BNI: { 5: 15_188_787, 10: 8_583_336, 15: 6_431_022, 20: 5_390_753, 25: 4_793_982 },
     },
-    features: ["Taman depan", "Lingkungan hijau", "One gate system", "Akses mudah ke Lembang"],
+    features: ["Parkir 2 mobil", "Listrik 2200 watt", "Air PDAM", "Private residence"],
     gradient: "from-sage/40 via-forest to-deep",
+    image: "/images/units/tancy-tampak.jpg",
+    plan: { src: "/images/units/tancy-denah.png", w: 771, h: 628 },
+    gallery: [
+      { src: "/images/units/tancy-living.jpg", label: "Living room" },
+      { src: "/images/units/tancy-kamar.jpg", label: "Bedroom" },
+      { src: "/images/units/tancy-mandi.jpg", label: "Bathroom" },
+    ],
   },
   {
     id: "lotus",
@@ -173,9 +204,8 @@ export const units: Unit[] = [
 // Ketentuan & persyaratan dari daftar harga developer.
 export const bookingFee = 10_000_000;
 export const ketentuan = [
-  "Harga jual belum termasuk booking fee.",
-  "Booking fee sebesar Rp10.000.000.",
-  "Berkas KPR harus dilengkapi dan diserahkan ke developer dalam 10 (sepuluh) hari sejak pembayaran booking fee.",
+  "Uang tanda jadi sebesar Rp10.000.000, sudah all in.", // PERIKSA: pastikan makna "all in" sesuai ketentuan developer
+  "Berkas KPR harus dilengkapi dan diserahkan ke developer dalam 10 (sepuluh) hari sejak pembayaran uang tanda jadi.",
   "Pindah kavling dikenakan biaya Rp2.000.000.",
   "Harga kelebihan tanah sebesar Rp7.000.000 per m².",
 ];
@@ -191,7 +221,7 @@ export const persyaratanKpr = [
   "Surat keterangan bekerja",
   "Fotokopi SIUP dan NPWP perusahaan tempat bekerja",
   "NPWP pribadi / PPh 21",
-  "Bukti pembayaran booking fee",
+  "Bukti pembayaran uang tanda jadi",
 ];
 export const bookingAccount = {
   company: "PT Karya Central Terang Abadi",
@@ -298,7 +328,7 @@ export const nearby = [
 export const faqs = [
   {
     q: "Di mana lokasi Green Setiabudi Residence?",
-    a: "Green Setiabudi Residence berada di Jl. Pasir Sereh / Sersan Bajuri KM 4,2, Bandung Barat, kawasan sejuk dan hijau di jalur Setiabudi menuju Lembang.",
+    a: "Green Setiabudi Residence berada di Jl. Terusan Sersan Bajuri, Cihideung, Kec. Parongpong, Jawa Barat 40559, kawasan sejuk dan hijau di jalur Setiabudi menuju Lembang.",
   },
   {
     q: "Apakah rumah bisa dibeli dengan KPR?",
@@ -310,7 +340,7 @@ export const faqs = [
   },
   {
     q: "Berapa DP dan cicilan per bulannya?",
-    a: "DP mulai Rp50 juta untuk Tansy dan Lotus, dan Rp100 juta untuk Kaluna. Booking fee Rp10 juta belum termasuk harga jual. Cicilan tergantung tipe, bank, dan tenor; lihat tabel di bagian Harga. Perhitungan final mengikuti ketentuan bank.",
+    a: "DP mulai Rp50 juta untuk Tancy dan Lotus, dan Rp100 juta untuk Kaluna. Uang tanda jadi hanya Rp10 juta, sudah all in. Cicilan tergantung tipe, bank, dan tenor; lihat tabel di bagian Harga. Perhitungan final mengikuti ketentuan bank.",
   },
   {
     q: "Bagaimana cara melihat rumahnya?",

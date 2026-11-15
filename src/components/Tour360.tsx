@@ -107,7 +107,7 @@ export default function Tour360() {
     "flex h-11 w-11 items-center justify-center rounded-full bg-deep/70 text-gold backdrop-blur transition active:scale-90 hover:bg-gold hover:text-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold";
 
   return (
-    <section id="tour-360" className="relative overflow-hidden bg-deep py-24 md:py-32">
+    <section id="tour-360" className="relative overflow-hidden bg-deep py-16 sm:py-20 md:py-28 lg:py-32">
       <div className="pointer-events-none absolute right-0 top-0 h-96 w-96 rounded-full bg-gold/5 blur-[120px]" />
       <div className="container-x">
         <SectionHeading
@@ -338,7 +338,7 @@ export default function Tour360() {
                   onClick={() => go(s.id)}
                   aria-pressed={on}
                   className={`group relative h-20 w-36 shrink-0 snap-start overflow-hidden rounded-2xl border transition active:scale-95 md:h-24 md:w-44 ${
-                    on ? "border-gold" : "border-white/10 hover:border-gold/50"
+                    on ? "border-gold" : "border-line/10 hover:border-gold/50"
                   }`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}

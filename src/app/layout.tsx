@@ -17,22 +17,27 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const title = "Green Setiabudi Residence | Rumah Mewah di Setiabudi Bandung";
+const title = "Green Setiabudi Residence | Rumah di Parongpong Bandung Barat";
 const description =
-  "Green Setiabudi Residence: hunian eksklusif dan hijau di kawasan Setiabudi, Bandung. Lihat tipe rumah, virtual tour 360°, simulasi KPR, dan jadwalkan visit lewat WhatsApp.";
+  "Rumah 2 lantai modern tropis dengan view pegunungan di Jl. Terusan Sersan Bajuri, Parongpong, Bandung Barat. Uang tanda jadi Rp10 juta. Tipe Tancy, Lotus, Kaluna, virtual tour 360°, simulasi KPR.";
+const ogImage = { url: "/og-image.jpg", width: 1200, height: 630, alt: "Green Setiabudi Residence, rumah dengan pemandangan pegunungan di Parongpong" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: title, template: "%s | Green Setiabudi Residence" },
   description,
   keywords: [
-    "rumah Setiabudi Bandung",
-    "perumahan Setiabudi Bandung",
-    "rumah mewah Bandung",
-    "cluster Bandung utara",
-    "rumah dijual Bandung",
     "Green Setiabudi Residence",
-    "KPR rumah Bandung",
+    "rumah Parongpong",
+    "perumahan Parongpong Bandung Barat",
+    "rumah dijual Bandung Barat",
+    "rumah Sersan Bajuri",
+    "rumah Cihideung Parongpong",
+    "rumah dekat Setiabudi Lembang",
+    "rumah 2 lantai Bandung utara",
+    "cluster Bandung utara",
+    "rumah uang tanda jadi 10 juta",
+    "KPR rumah Bandung Barat",
     "virtual tour rumah 360",
   ],
   authors: [{ name: site.developer }],
@@ -45,8 +50,11 @@ export const metadata: Metadata = {
     siteName: site.name,
     title,
     description,
+    images: [ogImage],
   },
-  twitter: { card: "summary_large_image", title, description },
+  twitter: { card: "summary_large_image", title, description, images: [ogImage.url] },
+  // Verifikasi Search Console: isi NEXT_PUBLIC_GSC_VERIFICATION dengan kode dari metode "HTML tag" (opsional)
+  verification: process.env.NEXT_PUBLIC_GSC_VERIFICATION ? { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION } : undefined,
   robots: {
     index: true,
     follow: true,
@@ -79,41 +87,50 @@ const jsonLd = {
       telephone: site.phoneDisplay,
       email: site.email,
       description,
-      image: `${site.url}/opengraph-image`,
+      image: `${site.url}/og-image.jpg`,
       address: {
         "@type": "PostalAddress",
-        streetAddress: site.address,
-        addressLocality: "Bandung",
+        streetAddress: "Jl. Terusan Sersan Bajuri, Cihideung",
+        addressLocality: "Parongpong",
         addressRegion: "Jawa Barat",
+        postalCode: "40559",
         addressCountry: "ID",
       },
-      geo: {
-        "@type": "GeoCoordinates",
-        latitude: site.geo.lat,
-        longitude: site.geo.lng,
-      },
+      // geo dimatikan sampai koordinat gerbang cluster dipastikan (site.geo masih perkiraan; koordinat salah merugikan SEO lokal)
+      // geo: { "@type": "GeoCoordinates", latitude: site.geo.lat, longitude: site.geo.lng },
+      areaServed: ["Parongpong", "Cihideung", "Lembang", "Bandung Barat", "Bandung"],
       openingHours: "Mo-Su 09:00-17:00",
       sameAs: [site.instagram],
     },
     {
       "@type": "Residence",
+      "@id": `${site.url}/#residence`,
       name: site.name,
       description,
       url: site.url,
+      image: [`${site.url}/og-image.jpg`, `${site.url}/images/hero-gunung.jpg`, `${site.url}/images/units/tancy-tampak.jpg`],
       address: {
         "@type": "PostalAddress",
-        addressLocality: "Bandung",
+        streetAddress: "Jl. Terusan Sersan Bajuri, Cihideung",
+        addressLocality: "Parongpong",
         addressRegion: "Jawa Barat",
+        postalCode: "40559",
         addressCountry: "ID",
       },
     },
   ],
 };
 
+// Dijalankan sebelum halaman tampil supaya tema tersimpan langsung terpasang (tanpa kedip). Default: dark (hijau).
+const themeInit = `try{var t=localStorage.getItem("gsr-theme");document.documentElement.setAttribute("data-theme",t==="light"?"light":"dark");if(t==="light"){var m=document.querySelector('meta[name="theme-color"]');m&&m.setAttribute("content","#FFFFFF")}}catch(e){document.documentElement.setAttribute("data-theme","dark")}`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID;
   return (
-    <html lang="id" className={`${cinzel.variable} ${montserrat.variable}`}>
+    <html lang="id" data-theme="dark" suppressHydrationWarning className={`${cinzel.variable} ${montserrat.variable}`}>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeInit }} />
+      </head>
       <body>
         <script
           type="application/ld+json"

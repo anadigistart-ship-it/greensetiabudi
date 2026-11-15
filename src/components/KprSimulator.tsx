@@ -49,11 +49,11 @@ export default function KprSimulator() {
   const label = "text-xs font-semibold uppercase tracking-[0.25em] text-gold";
   const chip = (on: boolean) =>
     `relative rounded-full border px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.2em] transition active:scale-95 ${
-      on ? "border-gold bg-gold text-charcoal" : "border-white/15 text-beige/80 hover:border-gold/60 hover:text-gold"
+      on ? "border-gold bg-gold text-charcoal" : "border-line/15 text-beige/80 hover:border-gold/60 hover:text-gold"
     }`;
 
   return (
-    <section id="kpr" className="bg-gradient-to-b from-forest/40 to-deep py-24 md:py-32">
+    <section id="kpr" className="bg-gradient-to-b from-forest/40 to-deep py-16 sm:py-20 md:py-28 lg:py-32">
       <div className="container-x">
         <SectionHeading
           eyebrow="Simulasi KPR"
@@ -62,7 +62,7 @@ export default function KprSimulator() {
         />
 
         <Reveal className="mb-8 flex justify-center">
-          <div className="flex rounded-full border border-white/10 bg-deep/70 p-1" role="tablist" aria-label="Mode simulasi">
+          <div className="flex rounded-full border border-line/10 bg-deep/70 p-1" role="tablist" aria-label="Mode simulasi">
             {([
               ["bank", "Angsuran bank"],
               ["bebas", "Simulasi bebas"],
@@ -87,7 +87,7 @@ export default function KprSimulator() {
         </Reveal>
 
         <Reveal>
-          <div className="mx-auto grid max-w-5xl overflow-hidden rounded-3xl border border-white/10 bg-forest/50 lg:grid-cols-2">
+          <div className="mx-auto grid max-w-5xl overflow-hidden rounded-3xl border border-line/10 bg-forest/50 lg:grid-cols-2">
             <div className="space-y-7 p-8 md:p-10">
               <div>
                 <label htmlFor="kpr-unit" className={label}>
@@ -97,7 +97,7 @@ export default function KprSimulator() {
                   id="kpr-unit"
                   value={unitId}
                   onChange={(e) => setUnitId(e.target.value)}
-                  className="mt-3 w-full rounded-xl border border-white/15 bg-deep px-4 py-3.5 text-sm text-beige outline-none focus:border-gold"
+                  className="mt-3 w-full rounded-xl border border-line/15 bg-deep px-4 py-3.5 text-sm text-beige outline-none focus:border-gold"
                 >
                   {units.map((u) => (
                     <option key={u.id} value={u.id}>
@@ -178,15 +178,15 @@ export default function KprSimulator() {
               </AnimatePresence>
 
               <dl className="mt-8 space-y-3 text-sm">
-                <div className="flex justify-between border-b border-white/10 pb-3">
+                <div className="flex justify-between border-b border-line/10 pb-3">
                   <dt className="text-beige/60">Harga promo</dt>
                   <dd className="font-medium text-beige">{rupiah(unit.price)}</dd>
                 </div>
-                <div className="flex justify-between border-b border-white/10 pb-3">
+                <div className="flex justify-between border-b border-line/10 pb-3">
                   <dt className="text-beige/60">Uang muka</dt>
                   <dd className="font-medium text-beige">{rupiah(view.dpAmount)}</dd>
                 </div>
-                <div className="flex justify-between border-b border-white/10 pb-3">
+                <div className="flex justify-between border-b border-line/10 pb-3">
                   <dt className="text-beige/60">Pokok pinjaman</dt>
                   <dd className="font-medium text-beige">{rupiah(view.loan)}</dd>
                 </div>

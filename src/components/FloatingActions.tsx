@@ -81,7 +81,7 @@ export default function FloatingActions() {
                   <span className="h-1.5 w-1.5 rounded-full bg-leaf" /> Online
                 </p>
               </div>
-              <button type="button" onClick={() => setOpen(false)} aria-label="Tutup chat" className="rounded-full p-1.5 text-beige/70 hover:bg-white/10">
+              <button type="button" onClick={() => setOpen(false)} aria-label="Tutup chat" className="rounded-full p-1.5 text-beige/70 hover:bg-line/10">
                 <IconClose className="h-5 w-5" />
               </button>
             </div>
@@ -127,13 +127,13 @@ export default function FloatingActions() {
               <div ref={end} />
             </div>
 
-            <div className="flex flex-wrap gap-2 border-t border-white/10 px-4 py-3">
+            <div className="flex flex-wrap gap-2 border-t border-line/10 px-4 py-3">
               {quick.map((q) => (
                 <button
                   key={q}
                   type="button"
                   onClick={() => void send(q)}
-                  className="rounded-full border border-white/15 px-3 py-1 text-[11px] text-beige/80 transition hover:border-gold hover:text-gold"
+                  className="rounded-full border border-line/15 px-3 py-1 text-[11px] text-beige/80 transition hover:border-gold hover:text-gold"
                 >
                   {q}
                 </button>
@@ -145,7 +145,7 @@ export default function FloatingActions() {
                 e.preventDefault();
                 void send(input);
               }}
-              className="flex items-center gap-2 border-t border-white/10 p-3"
+              className="flex items-center gap-2 border-t border-line/10 p-3"
             >
               <input
                 value={input}
@@ -153,7 +153,7 @@ export default function FloatingActions() {
                 placeholder="Tulis pertanyaan..."
                 maxLength={300}
                 aria-label="Tulis pesan"
-                className="flex-1 rounded-full border border-white/15 bg-forest/50 px-4 py-2.5 text-sm text-beige outline-none placeholder:text-beige/30 focus:border-gold"
+                className="flex-1 rounded-full border border-line/15 bg-forest/50 px-4 py-2.5 text-sm text-beige outline-none placeholder:text-beige/30 focus:border-gold"
               />
               <button
                 type="submit"
