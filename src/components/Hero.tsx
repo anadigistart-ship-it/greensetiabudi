@@ -23,22 +23,25 @@ const stats = [
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  // Parallax hanya untuk foto latar. Konten (teks + tombol CTA) tidak ikut bergeser atau memudar,
+  // supaya tombol tidak tertutup bar statistik saat halaman di-scroll.
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
 
   return (
     <section
       id="beranda"
       ref={ref}
+      // flex-col: konten di tengah, bar statistik di bawah sebagai bagian dari alur (bukan absolute),
+      // jadi tinggi section otomatis menyesuaikan layar laptop, tablet, maupun HP.
       // svh = tinggi layar HP yang sudah memperhitungkan bar browser; min-h-screen sebagai cadangan
-      className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-deep via-forest to-deep supports-[height:100svh]:min-h-svh"
+      className="relative flex min-h-screen flex-col overflow-hidden bg-gradient-to-b from-deep via-forest to-deep supports-[height:100svh]:min-h-svh"
     >
       {/* foto latar: render senja dengan pemandangan pegunungan */}
-      <div className="pointer-events-none absolute inset-0" aria-hidden="true">
+      <motion.div style={{ y: bgY }} className="pointer-events-none absolute inset-0" aria-hidden="true">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src="/images/hero-gunung.jpg" alt="" className="h-full w-full object-cover object-[50%_30%]" />
         <div className="absolute inset-0 bg-gradient-to-b from-deep/85 via-deep/55 to-deep/90" />
-      </div>
+      </motion.div>
 
       {/* cahaya */}
       <div className="pointer-events-none absolute -top-40 left-1/2 h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-leaf/10 blur-[100px] md:h-[600px] md:w-[600px] md:blur-[120px]" />
@@ -65,19 +68,16 @@ export default function Hero() {
         </svg>
       ))}
 
-      {/* padding bawah menyesuaikan tinggi bar statistik (2 baris di HP, 1 baris di layar lebar) */}
-      <motion.div
-        style={{ y, opacity: fade }}
-        className="container-x relative z-10 pb-40 pt-24 text-center sm:pb-36 sm:pt-28 md:pb-32 md:pt-32"
-      >
+      {/* konten: mengisi sisa tinggi di atas bar statistik, tetap di tengah */}
+      <div className="container-x relative z-10 flex flex-1 flex-col items-center justify-center pb-10 pt-24 text-center sm:pb-12 sm:pt-28 md:pt-32 lg:pb-14">
         <motion.div
           initial={{ opacity: 0, scale: 0.8, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto flex justify-center"
         >
-          {/* lebar & tinggi dibatasi lebar/tinggi layar, rasio logo tetap */}
-          <LogoMark className="h-auto w-auto max-h-[30svh] max-w-[88vw] drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] sm:max-h-[36svh] sm:max-w-[34rem] md:max-h-[42svh] md:max-w-[40rem]" />
+          {/* lebar & tinggi dibatasi lebar/tinggi layar, rasio logo tetap; di laptop dikecilkan sedikit agar CTA muat di layar pertama */}
+          <LogoMark className="h-auto w-auto max-h-[28svh] max-w-[88vw] drop-shadow-[0_0_30px_rgba(212,175,55,0.3)] sm:max-h-[32svh] sm:max-w-[34rem] md:max-h-[34svh] md:max-w-[38rem] lg:max-h-[36svh]" />
         </motion.div>
 
         {/* judul untuk mesin pencari & pembaca layar; tampilannya sudah ada di logo */}
@@ -96,7 +96,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.9, duration: 1 }}
-          className="mx-auto mt-6 max-w-xl px-2 text-sm leading-relaxed text-beige/75 sm:mt-8 sm:text-base md:text-lg"
+          className="mx-auto mt-5 max-w-xl px-2 text-sm leading-relaxed text-beige/75 sm:mt-6 sm:text-base md:text-lg"
         >
           <span className="mb-3 block font-heading text-xl font-semibold text-gold sm:text-2xl md:text-3xl">
             Suasana asri dengan pemandangan pegunungan
@@ -119,11 +119,12 @@ export default function Hero() {
           </span>
         </motion.div>
 
+        {/* sm:flex-wrap: di tablet tombol turun ke baris berikutnya, tidak terpotong */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 1 }}
-          className="mx-auto mt-8 flex w-full max-w-xs flex-col items-stretch justify-center gap-3 sm:mt-10 sm:max-w-none sm:flex-row sm:items-center sm:gap-4"
+          className="mx-auto mt-8 flex w-full max-w-xs flex-col items-stretch justify-center gap-3 sm:max-w-none sm:flex-row sm:flex-wrap sm:items-center sm:gap-4"
         >
           <a
             href={waLink("Halo, saya ingin jadwalkan visit ke Green Setiabudi Residence.")}
@@ -143,14 +144,14 @@ export default function Hero() {
             Unduh Brosur PDF
           </a>
         </motion.div>
-      </motion.div>
+      </div>
 
-      {/* statistik */}
+      {/* statistik: berada di alur normal di bawah konten, sehingga tidak pernah menimpa tombol */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.4, duration: 1 }}
-        className="absolute inset-x-0 bottom-0 z-10 border-t border-line/10 bg-deep/60 backdrop-blur-md"
+        className="relative z-10 border-t border-line/10 bg-deep/60 backdrop-blur-md"
       >
         <div className="container-x grid grid-cols-2 gap-y-3 pb-[max(1rem,env(safe-area-inset-bottom))] pt-4 md:grid-cols-4 md:py-5">
           {stats.map((s) => (
