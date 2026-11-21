@@ -17,10 +17,10 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const title = "Green Setiabudi Residence | Rumah di Parongpong Bandung Barat";
+const title = "Green Setiabudi Residence | Rumah di Setiabudi Bandung";
 const description =
-  "Rumah 2 lantai modern tropis dengan view pegunungan di Jl. Terusan Sersan Bajuri, Parongpong, Bandung Barat. Uang tanda jadi Rp10 juta. Tipe Tancy, Lotus, Kaluna, virtual tour 360°, simulasi KPR.";
-const ogImage = { url: "/og-image.jpg", width: 1200, height: 630, alt: "Green Setiabudi Residence, rumah dengan pemandangan pegunungan di Parongpong" };
+  "Rumah 2 lantai modern tropis dengan view pegunungan di Jl. Terusan Sersan Bajuri, Setiabudi, Bandung. Uang tanda jadi Rp10 juta. Tipe Tancy, Lotus, Kaluna, virtual tour 360°, simulasi KPR.";
+const ogImage = { url: "/og-image.jpg", width: 1200, height: 630, alt: "Green Setiabudi Residence, rumah dengan pemandangan pegunungan di Setiabudi Bandung" };
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -28,16 +28,16 @@ export const metadata: Metadata = {
   description,
   keywords: [
     "Green Setiabudi Residence",
-    "rumah Parongpong",
-    "perumahan Parongpong Bandung Barat",
-    "rumah dijual Bandung Barat",
+    "rumah Setiabudi Bandung",
+    "perumahan Setiabudi Bandung",
+    "rumah dijual Setiabudi Bandung",
     "rumah Sersan Bajuri",
-    "rumah Cihideung Parongpong",
+    "rumah dijual Setiabudi",
     "rumah dekat Setiabudi Lembang",
     "rumah 2 lantai Bandung utara",
     "cluster Bandung utara",
     "rumah uang tanda jadi 10 juta",
-    "KPR rumah Bandung Barat",
+    "KPR rumah Setiabudi Bandung",
     "virtual tour rumah 360",
   ],
   authors: [{ name: site.developer }],
@@ -90,15 +90,14 @@ const jsonLd = {
       image: `${site.url}/og-image.jpg`,
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Jl. Terusan Sersan Bajuri, Cihideung",
-        addressLocality: "Parongpong",
+        streetAddress: "Jl. Terusan Sersan Bajuri",
+        addressLocality: "Setiabudi, Bandung",
         addressRegion: "Jawa Barat",
-        postalCode: "40559",
         addressCountry: "ID",
       },
       // geo dimatikan sampai koordinat gerbang cluster dipastikan (site.geo masih perkiraan; koordinat salah merugikan SEO lokal)
       // geo: { "@type": "GeoCoordinates", latitude: site.geo.lat, longitude: site.geo.lng },
-      areaServed: ["Parongpong", "Cihideung", "Lembang", "Bandung Barat", "Bandung"],
+      areaServed: ["Setiabudi", "Lembang", "Bandung"],
       openingHours: "Mo-Su 09:00-17:00",
       sameAs: [site.instagram],
     },
@@ -111,10 +110,9 @@ const jsonLd = {
       image: [`${site.url}/og-image.jpg`, `${site.url}/images/hero-gunung.jpg`, `${site.url}/images/units/tancy-tampak.jpg`],
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Jl. Terusan Sersan Bajuri, Cihideung",
-        addressLocality: "Parongpong",
+        streetAddress: "Jl. Terusan Sersan Bajuri",
+        addressLocality: "Setiabudi, Bandung",
         addressRegion: "Jawa Barat",
-        postalCode: "40559",
         addressCountry: "ID",
       },
     },

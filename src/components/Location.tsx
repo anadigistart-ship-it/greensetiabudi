@@ -22,8 +22,8 @@ export default function Location() {
       <div className="container-x">
         <SectionHeading
           eyebrow="Lokasi Strategis"
-          title="Jalur Setiabudi, Bandung Barat"
-          desc="Udara sejuk Bandung utara di Jl. Terusan Sersan Bajuri, Cihideung, Parongpong, dengan akses ke kampus, kuliner, pusat belanja, hingga destinasi Lembang."
+          title="Jalur Setiabudi, Bandung"
+          desc="Udara sejuk Bandung utara di Jl. Terusan Sersan Bajuri, Setiabudi, Bandung, dengan akses ke kampus, kuliner, pusat belanja, hingga destinasi Lembang."
         />
 
         {/* peta ilustrasi kawasan */}
@@ -55,7 +55,7 @@ export default function Location() {
             <div className="overflow-hidden rounded-3xl border border-line/10">
               <iframe
                 src={mapSrc}
-                title="Peta lokasi Green Setiabudi Residence di Bandung Barat"
+                title="Peta lokasi Green Setiabudi Residence di Setiabudi Bandung"
                 className="h-[380px] w-full md:h-[480px]"
                 style={{ border: 0, filter: "grayscale(0.4) contrast(1.05)" }}
                 loading="lazy"

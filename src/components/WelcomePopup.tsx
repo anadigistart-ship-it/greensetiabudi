@@ -89,7 +89,7 @@ export default function WelcomePopup() {
           </div>
 
           <h2 className="mt-5 font-heading text-2xl font-semibold text-beige">Suasana asri dengan pemandangan pegunungan</h2>
-          <p className="mt-2 text-sm text-beige/70">Sersan Bajuri, Cihideung, Parongpong, Bandung Barat. Amankan unit impianmu dengan uang tanda jadi Rp10 juta saja.</p>
+          <p className="mt-2 text-sm text-beige/70">Sersan Bajuri, Setiabudi, Bandung. Amankan unit impianmu dengan uang tanda jadi Rp10 juta saja.</p>
 
           <div className="mt-6 flex flex-col gap-3">
             <a

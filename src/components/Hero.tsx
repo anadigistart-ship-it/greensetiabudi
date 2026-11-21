@@ -89,7 +89,7 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 1 }}
           className="mt-4 text-[10px] font-medium uppercase tracking-[0.3em] text-gold sm:text-xs sm:tracking-[0.5em]"
         >
-          Sersan Bajuri · Cihideung · Parongpong
+          Sersan Bajuri · Setiabudi · Bandung
         </motion.p>
 
         <motion.p
